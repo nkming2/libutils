@@ -1,5 +1,5 @@
 /*
- * basic_shell_log_strategy.cpp
+ * shell_log_strategy.cpp
  *
  * Author: Ming Tsang
  * Copyright (c) 2014 Ming Tsang
@@ -9,10 +9,10 @@
 #include <iostream>
 #include <string>
 
-#include "libutils/io/basic_shell_log_strategy.h"
 #include "libutils/io/logger.h"
 #include "libutils/io/ostream_log_strategy.h"
 #include "libutils/io/ostream_log_strategy.tcc"
+#include "libutils/io/shell_log_strategy.h"
 
 using namespace std;
 
@@ -54,24 +54,24 @@ const char* GetInitial(const LoggerFlag flag)
 }
 
 template<>
-BasicShellLogStrategy<char>::BasicShellLogStrategy()
+ShellLogStrategy<char>::ShellLogStrategy()
 		: OstreamLogStrategy(&cout, false)
 {}
 
 template<>
-BasicShellLogStrategy<wchar_t>::BasicShellLogStrategy()
+ShellLogStrategy<wchar_t>::ShellLogStrategy()
 		: OstreamLogStrategy(&wcout, false)
 {}
 
 template<>
-void BasicShellLogStrategy<char>::Log(const basic_string<char> &str,
+void ShellLogStrategy<char>::Log(const basic_string<char> &str,
 		const LoggerFlag flag)
 {
 	GetStream() << GetInitial(flag) << str << '\n';
 }
 
 template<>
-void BasicShellLogStrategy<wchar_t>::Log(const basic_string<wchar_t> &str,
+void ShellLogStrategy<wchar_t>::Log(const basic_string<wchar_t> &str,
 		const LoggerFlag flag)
 {
 	GetStream() << GetInitial(flag) << str << L'\n';

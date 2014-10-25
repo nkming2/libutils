@@ -1,5 +1,5 @@
 /*
- * basic_shell_log_strategy.h
+ * shell_log_strategy.h
  *
  * Author: Ming Tsang
  * Copyright (c) 2014 Ming Tsang
@@ -19,10 +19,10 @@ namespace io
 {
 
 template<typename CharT_>
-class BasicShellLogStrategy : public OstreamLogStrategy<CharT_>
+class ShellLogStrategy : public OstreamLogStrategy<CharT_>
 {
 public:
-	BasicShellLogStrategy();
+	ShellLogStrategy();
 
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;
 };
