@@ -8,8 +8,17 @@
 
 #pragma once
 
-#include "libutils/io/logger.h"
 #include "libutils/misc/singleton.h"
+
+namespace libutils
+{
+namespace io
+{
+
+template<typename T> class Logger;
+
+}
+}
 
 namespace libutils
 {
@@ -25,3 +34,5 @@ class SystemLog : public misc::Singleton<Logger<CharT>, SystemLog<CharT>>
 
 }
 }
+
+#include "libutils/io/logger.h"
