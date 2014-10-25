@@ -77,16 +77,18 @@ void HtmlLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
 template<typename CharT_>
 std::string HtmlLogStrategy<CharT_>::OnAddHeader()
 {
-	return "<style>"
-			"#log-content{font-family:monospace;}"
-			"p.log{white-space:pre; margin:0; padding-left:8px; padding-right:8px;}"
-			".fatal{color:red; font-weight:bold;}"
-			".error{color:red;}"
-			".warning{color:#FFA500;}"
-			".info{color:green;}"
-			".debug{color:blue;}"
-			".vebose{color:black;}"
-			"</style>";
+	return R"HEREDOC(
+<style>
+#log-content{font-family:monospace;}
+p.log{white-space:pre; margin:0; padding-left:8px; padding-right:8px;}
+.fatal{color:red; font-weight:bold;}
+.error{color:red;}
+.warning{color:#FFA500;}
+.info{color:green;}
+.debug{color:blue;}
+.vebose{color:black;}
+</style>
+)HEREDOC";
 }
 
 }
