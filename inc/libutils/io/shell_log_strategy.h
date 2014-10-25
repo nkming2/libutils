@@ -23,6 +23,8 @@ class ShellLogStrategy : public OstreamLogStrategy<CharT_>
 {
 public:
 	ShellLogStrategy();
+	virtual ~ShellLogStrategy()
+	{}
 
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;
 };

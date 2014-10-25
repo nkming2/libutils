@@ -24,6 +24,9 @@ template<typename CharT_>
 class CompositeLogStrategy : public LogStrategy<CharT_>
 {
 public:
+	virtual ~CompositeLogStrategy()
+	{}
+
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag);
 
 	void PushStrategy(std::unique_ptr<LogStrategy<CharT_>> &&strategy);

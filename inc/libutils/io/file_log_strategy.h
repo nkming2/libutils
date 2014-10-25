@@ -23,7 +23,7 @@ class FileLogStrategy : public OstreamLogStrategy<CharT_>
 {
 public:
 	explicit FileLogStrategy(const std::string &file);
-	~FileLogStrategy()
+	virtual ~FileLogStrategy()
 	{}
 
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;

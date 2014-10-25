@@ -31,7 +31,7 @@ protected:
 			: OstreamLogStrategy(stream, true)
 	{}
 	OstreamLogStrategy(std::basic_ostream<CharT_> *stream, const bool is_owner);
-	~OstreamLogStrategy();
+	virtual ~OstreamLogStrategy();
 
 	std::basic_ostream<CharT_>& GetStream()
 	{
