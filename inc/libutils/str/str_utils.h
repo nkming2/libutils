@@ -36,6 +36,15 @@ public:
 		return ConcatT<wchar_t>(args...);
 	}
 
+	/**
+	 * sprintf() to a string
+	 *
+	 * @param format printf format string
+	 * @return The formatted string
+	 */
+	template<typename T>
+	static std::basic_string<T> Format(const T *format, ...);
+
 	template<typename T>
 	static bool BeginsWith(const std::basic_string<T> &begin,
 			const std::basic_string<T> &str);
