@@ -76,3 +76,5 @@ public:
 
 }
 }
+
+#include "str_utils.tcc"

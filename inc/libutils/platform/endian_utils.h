@@ -37,3 +37,5 @@ public:
 
 }
 }
+
+#include "endian_utils.tcc"

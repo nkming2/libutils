@@ -45,3 +45,5 @@ private:
 
 }
 }
+
+#include "ostream_log_strategy.tcc"

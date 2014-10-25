@@ -112,3 +112,5 @@ private:
 
 }
 }
+
+#include "logger.tcc"
