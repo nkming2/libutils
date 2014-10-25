@@ -33,6 +33,11 @@ protected:
 	{
 		return "";
 	}
+
+private:
+	void Init();
+
+	bool m_is_init;
 };
 
 }

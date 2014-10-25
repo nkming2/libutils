@@ -52,13 +52,10 @@ inline const char* GetCssClass(const LoggerFlag flag)
 }
 
 template<typename CharT_>
-HtmlLogStrategy<CharT_>::HtmlLogStrategy(const std::string &path)
-		: FileLogStrategy<CharT_>(path)
-{
-	this->GetStream() << "<!DOCTYPE html><html><head><meta charset='utf-8' />\n"
-			<< "<head>\n" << OnAddHeader().c_str() << "\n</head>\n<body>\n"
-			<< OnAddPreBody().c_str() << '\n';
-}
+HtmlLogStrategy<CharT_>::HtmlLogStrategy(const std::string &file)
+		: FileLogStrategy<CharT_>(file),
+		  m_is_init(false)
+{}
 
 template<typename CharT_>
 HtmlLogStrategy<CharT_>::~HtmlLogStrategy()
@@ -67,9 +64,22 @@ HtmlLogStrategy<CharT_>::~HtmlLogStrategy()
 }
 
 template<typename CharT_>
+void HtmlLogStrategy<CharT_>::Init()
+{
+	this->GetStream() << "<!DOCTYPE html><html><head><meta charset='utf-8' />\n"
+			<< "<head>\n" << OnAddHeader().c_str() << "\n</head>\n<body>\n"
+			<< OnAddPreBody().c_str() << '\n';
+	m_is_init = true;
+}
+
+template<typename CharT_>
 void HtmlLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
 		const LoggerFlag flag)
 {
+	if (!m_is_init)
+	{
+		Init();
+	}
 	this->GetStream() << "<p class='log " << internal::GetCssClass(flag) << "'>"
 			<< str << "</p>\n";
 }
