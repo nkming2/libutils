@@ -15,8 +15,8 @@
 #include "libutils/io/stream_ops.h"
 #include "libutils/str/str_utils.h"
 
-#define NS_TAG "libutils::str::"
-#define TAG NS_TAG "StrUtils::"
+#define LU_NS_TAG "libutils::str::"
+#define LU_TAG LU_NS_TAG "StrUtils::"
 
 namespace libutils
 {
@@ -121,7 +121,7 @@ std::basic_string<T> StrUtils::Replace(const std::basic_string<T> &search,
 {
 	if (search == replace)
 	{
-		LU_LOG_I(TAG "Replace", "search == replace");
+		LU_LOG_I(LU_TAG "Replace", "search == replace");
 		return str;
 	}
 
@@ -161,5 +161,5 @@ std::basic_string<T> StrUtils::Implode(const std::basic_string<T> &glue,
 }
 }
 
-#undef NS_TAG
-#undef TAG
+#undef LU_NS_TAG
+#undef LU_TAG
