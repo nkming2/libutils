@@ -22,7 +22,6 @@
 
 	#include "libutils/io/system_log.h"
 	#include "libutils/io/logger.h"
-	#include "libutils/io/logger.tcc"
 #else
 	#define LU_LOG
 	#define LU_LOG_WTF(tag, msg)

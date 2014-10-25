@@ -13,10 +13,8 @@
 
 #include "libutils/log.h"
 #include "libutils/platform/endian_utils.h"
-#include "libutils/platform/endian_utils.tcc"
 #include "libutils/str/encode_utils.h"
 #include "libutils/str/str_utils.h"
-#include "libutils/str/str_utils.tcc"
 
 using namespace std;
 

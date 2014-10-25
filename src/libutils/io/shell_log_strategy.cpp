@@ -11,7 +11,6 @@
 
 #include "libutils/io/logger.h"
 #include "libutils/io/ostream_log_strategy.h"
-#include "libutils/io/ostream_log_strategy.tcc"
 #include "libutils/io/shell_log_strategy.h"
 
 using namespace std;

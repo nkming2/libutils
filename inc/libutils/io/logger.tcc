@@ -15,7 +15,6 @@
 
 #include "libutils/io/log_strategy.h"
 #include "libutils/str/str_utils.h"
-#include "libutils/str/str_utils.tcc"
 
 namespace libutils
 {
