@@ -11,18 +11,20 @@
 #include <string>
 
 #include "libutils/io/logger.h"
-#include "libutils/io/log_strategy.h"
+#include "libutils/io/ostream_log_strategy.h"
 
 namespace libutils
 {
 namespace io
 {
 
-template<typename T>
-class BasicShellLogStrategy : public LogStrategy<T>
+template<typename CharT_>
+class BasicShellLogStrategy : public OstreamLogStrategy<CharT_>
 {
 public:
-	void Log(const std::basic_string<T> &str, const LoggerFlag flag) override;
+	BasicShellLogStrategy();
+
+	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;
 };
 
 }

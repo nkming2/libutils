@@ -9,9 +9,10 @@
 #include <iostream>
 #include <string>
 
-#include "libutils/env.h"
 #include "libutils/io/basic_shell_log_strategy.h"
 #include "libutils/io/logger.h"
+#include "libutils/io/ostream_log_strategy.h"
+#include "libutils/io/ostream_log_strategy.tcc"
 
 using namespace std;
 
@@ -53,17 +54,27 @@ const char* GetInitial(const LoggerFlag flag)
 }
 
 template<>
+BasicShellLogStrategy<char>::BasicShellLogStrategy()
+		: OstreamLogStrategy(&cout, false)
+{}
+
+template<>
+BasicShellLogStrategy<wchar_t>::BasicShellLogStrategy()
+		: OstreamLogStrategy(&wcout, false)
+{}
+
+template<>
 void BasicShellLogStrategy<char>::Log(const basic_string<char> &str,
 		const LoggerFlag flag)
 {
-	cout << GetInitial(flag) << str << '\n';
+	GetStream() << GetInitial(flag) << str << '\n';
 }
 
 template<>
 void BasicShellLogStrategy<wchar_t>::Log(const basic_string<wchar_t> &str,
 		const LoggerFlag flag)
 {
-	wcout << GetInitial(flag) << str << L'\n';
+	GetStream() << GetInitial(flag) << str << L'\n';
 }
 
 }
