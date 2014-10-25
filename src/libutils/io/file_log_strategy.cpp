@@ -7,11 +7,11 @@
  */
 
 #include <fstream>
+#include <ostream>
 #include <string>
 
 #include "libutils/io/file_log_strategy.h"
 #include "libutils/io/logger.h"
-#include "libutils/io/ostream_log_strategy.h"
 
 using namespace std;
 
