@@ -30,7 +30,7 @@ public:
 	 * @param u8 Output array to hold the UTF-8 data, the size must be >= 4
 	 * @return Number of bytes written to @a u8
 	 */
-	static size_t U16ToU8(const wchar_t u16, char *u8);
+	static size_t U16ToU8(const wchar_t u16, char *out_u8);
 	static std::string U16ToU8(const std::wstring &u16_str,
 			const bool is_shrink_str);
 	static std::string U16ToU8(const std::wstring &u16_str)
@@ -48,7 +48,7 @@ public:
 	 * has failed due to insufficient @a u8 data. If the value == 0, the
 	 * operation has failed due to error
 	 */
-	static size_t U8ToU16(const char *u8, const size_t u8_size, wchar_t *u16);
+	static size_t U8ToU16(const char *u8, const size_t u8_size, wchar_t *out_u16);
 	static std::wstring U8ToU16(const std::string &u8_str,
 			const bool is_shrink_str);
 	static std::wstring U8ToU16(const std::string &u8_str)

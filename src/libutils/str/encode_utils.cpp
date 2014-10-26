@@ -26,36 +26,36 @@ namespace libutils
 namespace str
 {
 
-size_t EncodeUtils::U16ToU8(const wchar_t u16, char *u8)
+size_t EncodeUtils::U16ToU8(const wchar_t u16, char *out_u8)
 {
 	if (u16 <= 0x007F)
 	{
 		// 0xxxxxxx to 0xxxxxxx
-		u8[0] = u16;
+		out_u8[0] = u16;
 		return 1;
 	}
 	else if (u16 <= 0x7FF)
 	{
 		// 00000yyy yyxxxxxx to 110yyyyy 10xxxxxx
-		u8[0] = 0xC0 | ((u16 & 0x07C0) >> 6);
-		u8[1] = 0x80 | (u16 & 0x003F);
+		out_u8[0] = 0xC0 | ((u16 & 0x07C0) >> 6);
+		out_u8[1] = 0x80 | (u16 & 0x003F);
 		return 2;
 	}
 	else if (u16 <= 0xFFFF)
 	{
 		// zzzzyyyy yyxxxxxx to 1110zzzz 10yyyyyy 10xxxxxx
-		u8[0] = 0xE0 | ((u16 & 0xF000) >> 12);
-		u8[1] = 0x80 | ((u16 & 0x0FC0) >> 6);
-		u8[2] = 0x80 | (u16 & 0x003F);
+		out_u8[0] = 0xE0 | ((u16 & 0xF000) >> 12);
+		out_u8[1] = 0x80 | ((u16 & 0x0FC0) >> 6);
+		out_u8[2] = 0x80 | (u16 & 0x003F);
 		return 3;
 	}
 	else if (u16 <= 0x10FFFF)
 	{
 		// 000aaazz zzzzyyyy yyxxxxxx to 11110aaa 10zzzzzz 10yyyyyy 10xxxxxx
-		u8[0] = 0xF0 | ((u16 & 0x1C0000) >> 18);
-		u8[1] = 0x80 | ((u16 & 0x03F000) >> 12);
-		u8[2] = 0x80 | ((u16 & 0x000FC0) >> 6);
-		u8[3] = 0x80 | (u16 & 0x003F);
+		out_u8[0] = 0xF0 | ((u16 & 0x1C0000) >> 18);
+		out_u8[1] = 0x80 | ((u16 & 0x03F000) >> 12);
+		out_u8[2] = 0x80 | ((u16 & 0x000FC0) >> 6);
+		out_u8[3] = 0x80 | (u16 & 0x003F);
 		return 4;
 	}
 	else
@@ -84,9 +84,10 @@ string EncodeUtils::U16ToU8(const wstring &u16_str, const bool is_shrink_str)
 	return u8_str;
 }
 
-size_t EncodeUtils::U8ToU16(const char *u8, const size_t u8_size, wchar_t *u16)
+size_t EncodeUtils::U8ToU16(const char *u8, const size_t u8_size,
+		wchar_t *out_u16)
 {
-	*u16 = 0;
+	*out_u16 = 0;
 	if (u8_size == 0)
 	{
 		LU_LOG_W(TAG "U8ToU16", "Empty data");
@@ -102,10 +103,10 @@ size_t EncodeUtils::U8ToU16(const char *u8, const size_t u8_size, wchar_t *u16)
 		}
 		else
 		{
-			*u16 |= (u8[0] & 0x0E) << 18;
-			*u16 |= (u8[1] & 0x3F) << 12;
-			*u16 |= (u8[2] & 0x3F) << 6;
-			*u16 |= (u8[3] & 0x3F);
+			*out_u16 |= (u8[0] & 0x0E) << 18;
+			*out_u16 |= (u8[1] & 0x3F) << 12;
+			*out_u16 |= (u8[2] & 0x3F) << 6;
+			*out_u16 |= (u8[3] & 0x3F);
 		}
 		return 4;
 	}
@@ -118,9 +119,9 @@ size_t EncodeUtils::U8ToU16(const char *u8, const size_t u8_size, wchar_t *u16)
 		}
 		else
 		{
-			*u16 |= (u8[0] & 0x0F) << 12;
-			*u16 |= (u8[1] & 0x3F) << 6;
-			*u16 |= (u8[2] & 0x3F);
+			*out_u16 |= (u8[0] & 0x0F) << 12;
+			*out_u16 |= (u8[1] & 0x3F) << 6;
+			*out_u16 |= (u8[2] & 0x3F);
 		}
 		return 3;
 	}
@@ -133,15 +134,15 @@ size_t EncodeUtils::U8ToU16(const char *u8, const size_t u8_size, wchar_t *u16)
 		}
 		else
 		{
-			*u16 |= (u8[0] & 0x1F) << 6;
-			*u16 |= (u8[1] & 0x3F);
+			*out_u16 |= (u8[0] & 0x1F) << 6;
+			*out_u16 |= (u8[1] & 0x3F);
 		}
 		return 2;
 	}
 	else if (!(u8[0] & 0x80))
 	{
 		// 0xxxxxxx
-		*u16 = u8[0];
+		*out_u16 = u8[0];
 		return 1;
 	}
 	else
