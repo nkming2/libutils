@@ -8,10 +8,11 @@
 
 #pragma once
 
+#include <ostream>
 #include <string>
 
-#include "libutils/io/file_log_strategy.h"
 #include "libutils/io/logger.h"
+#include "libutils/io/ostream_log_strategy.h"
 
 namespace libutils
 {
@@ -19,10 +20,11 @@ namespace io
 {
 
 template<typename CharT_>
-class HtmlLogStrategy : public FileLogStrategy<CharT_>
+class HtmlLogStrategy : public OstreamLogStrategy<CharT_>
 {
 public:
-	explicit HtmlLogStrategy(const std::string &file);
+	explicit HtmlLogStrategy(std::basic_ostream<CharT_> *stream);
+	HtmlLogStrategy(std::basic_ostream<CharT_> *stream, const bool is_owner);
 	virtual ~HtmlLogStrategy();
 
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;

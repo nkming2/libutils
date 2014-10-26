@@ -52,8 +52,15 @@ inline const char* GetCssClass(const LoggerFlag flag)
 }
 
 template<typename CharT_>
-HtmlLogStrategy<CharT_>::HtmlLogStrategy(const std::string &file)
-		: FileLogStrategy<CharT_>(file),
+HtmlLogStrategy<CharT_>::HtmlLogStrategy(std::basic_ostream<CharT_> *stream)
+		: OstreamLogStrategy<CharT_>(stream),
+		  m_is_init(false)
+{}
+
+template<typename CharT_>
+HtmlLogStrategy<CharT_>::HtmlLogStrategy(std::basic_ostream<CharT_> *stream,
+		const bool is_owner)
+		: OstreamLogStrategy<CharT_>(stream, is_owner),
 		  m_is_init(false)
 {}
 

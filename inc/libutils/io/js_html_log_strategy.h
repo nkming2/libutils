@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <ostream>
 #include <string>
 
 #include "libutils/io/html_log_strategy.h"
@@ -22,8 +23,12 @@ template<typename CharT_>
 class JsHtmlLogStrategy : public HtmlLogStrategy<CharT_>
 {
 public:
-	explicit JsHtmlLogStrategy(const std::string &file)
-			: HtmlLogStrategy<CharT_>(file)
+	explicit JsHtmlLogStrategy(std::basic_ostream<CharT_> *stream)
+			: HtmlLogStrategy<CharT_>(stream)
+	{}
+
+	JsHtmlLogStrategy(std::basic_ostream<CharT_> *stream, const bool is_owner)
+			: HtmlLogStrategy<CharT_>(stream, is_owner)
 	{}
 
 	virtual ~JsHtmlLogStrategy()
