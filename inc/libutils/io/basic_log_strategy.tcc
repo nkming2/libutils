@@ -1,5 +1,5 @@
 /*
- * shell_log_strategy.tcc
+ * basic_log_strategy.tcc
  *
  * Author: Ming Tsang
  * Copyright (c) 2014 Ming Tsang
@@ -8,11 +8,10 @@
 
 #pragma once
 
-#include <ostream>
 #include <string>
 
+#include "libutils/io/basic_log_strategy.h"
 #include "libutils/io/logger.h"
-#include "libutils/io/shell_log_strategy.h"
 
 namespace libutils
 {
@@ -22,7 +21,7 @@ namespace io
 namespace internal
 {
 
-inline const char* SlsGetInitial(const LoggerFlag flag)
+inline const char* BlsGetInitial(const LoggerFlag flag)
 {
 	switch (flag)
 	{
@@ -52,10 +51,10 @@ inline const char* SlsGetInitial(const LoggerFlag flag)
 }
 
 template<typename CharT_>
-void ShellLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
+void BasicLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
 		const LoggerFlag flag)
 {
-	this->GetStream() << internal::SlsGetInitial(flag) << str << '\n';
+	this->GetStream() << internal::BlsGetInitial(flag) << str << '\n';
 }
 
 }
