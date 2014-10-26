@@ -18,4 +18,6 @@
 	#if !defined(WIN32)
 		#define WIN32
 	#endif
+#else
+	#error Unsupported platform
 #endif
