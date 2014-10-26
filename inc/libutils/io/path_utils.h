@@ -59,6 +59,18 @@ public:
 	template<typename CharT_>
 	static std::basic_string<CharT_> Filename(
 			const std::basic_string<CharT_> &path);
+
+	/**
+	 * /foo\\bar.x.y -> /foo/bar.x.y
+	 *
+	 * @param path
+	 * @param is_forward_slash If true, forward slash will be used, backslash
+	 * otherwise
+	 * @return
+	 */
+	template<typename CharT_>
+	static std::basic_string<CharT_> UnifySlash(
+			const std::basic_string<CharT_> &path, const bool is_forward_slash);
 };
 
 }

@@ -8,10 +8,12 @@
 
 #pragma once
 
+#include <algorithm>
 #include <string>
 
 #include "libutils/io/path_utils.h"
 #include "libutils/misc/misc_utils.h"
+#include "libutils/str/str_utils.h"
 
 namespace libutils
 {
@@ -137,6 +139,22 @@ std::basic_string<CharT_> PathUtils::Filename(
 	{
 		return temp.substr(0, pos);
 	}
+}
+
+template<typename CharT_>
+std::basic_string<CharT_> PathUtils::UnifySlash(
+		const std::basic_string<CharT_> &path, const bool is_forward_slash)
+{
+	std::basic_string<CharT_> product = path;
+	if (is_forward_slash)
+	{
+		std::replace(product.begin(), product.end(), '\\', '/');
+	}
+	else
+	{
+		std::replace(product.begin(), product.end(), '/', '\\');
+	}
+	return product;
 }
 
 }
