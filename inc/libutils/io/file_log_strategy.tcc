@@ -22,7 +22,7 @@ namespace io
 namespace internal
 {
 
-inline const char* GetInitial(const LoggerFlag flag)
+inline const char* FlsGetInitial(const LoggerFlag flag)
 {
 	switch (flag)
 	{
@@ -51,11 +51,11 @@ inline const char* GetInitial(const LoggerFlag flag)
 
 }
 
-template<typename T>
-void FileLogStrategy<T>::Log(const std::basic_string<T> &str,
+template<typename CharT_>
+void FileLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
 		const LoggerFlag flag)
 {
-	this->GetStream() << internal::GetInitial(flag) << str << '\n';
+	this->GetStream() << internal::FlsGetInitial(flag) << str << '\n';
 }
 
 }
