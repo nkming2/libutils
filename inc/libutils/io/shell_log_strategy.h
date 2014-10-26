@@ -31,3 +31,5 @@ public:
 
 }
 }
+
+#include "shell_log_strategy.tcc"
