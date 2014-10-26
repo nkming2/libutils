@@ -38,13 +38,13 @@ public:
 
 	static T* Reconstruct()
 	{
-	    m_instance.reset(new T);
+		m_instance.reset(new T);
 		return m_instance.get();
 	}
 
 	static T* Reconstruct(T *source)
 	{
-	    m_instance.reset(source);
+		m_instance.reset(source);
 		return m_instance.get();
 	}
 

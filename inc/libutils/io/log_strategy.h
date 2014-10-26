@@ -24,7 +24,7 @@ public:
 	typedef CharT_ CharT;
 
 	virtual ~LogStrategy()
-    {}
+	{}
 
 	virtual void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) = 0;
 };

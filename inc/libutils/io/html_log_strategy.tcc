@@ -27,22 +27,22 @@ inline const char* GetCssClass(const LoggerFlag flag)
 	switch (flag)
 	{
 	case LoggerFlag::kWtf:
-        return "fatal";
+		return "fatal";
 
 	case LoggerFlag::kError:
-        return "error";
+		return "error";
 
 	case LoggerFlag::kWarning:
-        return "warning";
+		return "warning";
 
 	case LoggerFlag::kInfo:
-        return "info";
+		return "info";
 
 	case LoggerFlag::kDebug:
-        return "debug";
+		return "debug";
 
 	case LoggerFlag::kVerbose:
-        return "verbose";
+		return "verbose";
 
 	default:
 		return "";
