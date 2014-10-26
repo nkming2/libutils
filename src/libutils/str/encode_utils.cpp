@@ -12,7 +12,6 @@
 #include <string>
 
 #include "libutils/log.h"
-#include "libutils/platform/endian_utils.h"
 #include "libutils/str/encode_utils.h"
 #include "libutils/str/str_utils.h"
 
