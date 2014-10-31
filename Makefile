@@ -48,7 +48,7 @@ CPPFLAGS+=$(addprefix -I,$(ALL_INC_PATHS))
 CPPFLAGS+=$(addprefix -D,$(ALL_SYMBOLS))
 CPPFLAGS+=-MMD
 
-CXXFLAGS+=-std=gnu++11
+CXXFLAGS+=-std=gnu++1y
 CXXFLAGS+=-fmessage-length=0
 CXXFLAGS+=-fno-strict-aliasing
 CXXFLAGS+=-pedantic -Wall -Wextra
