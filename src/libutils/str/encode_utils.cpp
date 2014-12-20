@@ -17,10 +17,10 @@
 
 using namespace std;
 
-#define NS_TAG "libutils::str::"
+#define NS_TAG "utils::str::"
 #define TAG NS_TAG "EncodeUtils::"
 
-namespace libutils
+namespace utils
 {
 namespace str
 {

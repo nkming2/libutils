@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace libutils
+namespace utils
 {
 namespace misc
 {

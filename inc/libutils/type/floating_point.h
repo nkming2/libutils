@@ -44,7 +44,7 @@
 #include <cstdint>
 #include <limits>
 
-namespace libutils
+namespace utils
 {
 namespace type
 {

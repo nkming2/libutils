@@ -2,7 +2,7 @@
  * stream_ops.h
  * Additional ostream operators to translate between char (assumed UTF-8) and
  * wchar_t (assumed UTF-16). To use, import the specific namespace
- * libutils::io::stream_ops before calling the operators
+ * utils::io::stream_ops before calling the operators
  *
  * Author: Ming Tsang
  * Copyright (c) 2014 Ming Tsang
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <string>
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

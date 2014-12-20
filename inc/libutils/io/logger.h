@@ -12,7 +12,7 @@
 #include <memory>
 #include <string>
 
-namespace libutils
+namespace utils
 {
 namespace io
 {
@@ -22,7 +22,7 @@ template<typename CharT_> class LogStrategy;
 }
 }
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

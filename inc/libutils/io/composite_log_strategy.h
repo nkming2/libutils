@@ -15,7 +15,7 @@
 #include "libutils/io/logger.h"
 #include "libutils/io/log_strategy.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

@@ -10,7 +10,7 @@
 
 #include <memory>
 
-namespace libutils
+namespace utils
 {
 namespace misc
 {

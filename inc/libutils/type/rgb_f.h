@@ -13,7 +13,7 @@
 #include "libutils/math/math_utils.h"
 #include "libutils/type/floating_point.h"
 
-namespace libutils
+namespace utils
 {
 namespace type
 {

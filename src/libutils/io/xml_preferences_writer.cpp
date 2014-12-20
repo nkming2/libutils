@@ -22,10 +22,10 @@
 using namespace std;
 using namespace tinyxml2;
 
-#define LU_NS_TAG "libutils::io::"
+#define LU_NS_TAG "utils::io::"
 #define LU_TAG LU_NS_TAG "XmlPreferencesWriter::"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

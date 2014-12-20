@@ -14,7 +14,7 @@
 #include "libutils/math/math_utils.h"
 #include "libutils/type/rgb_8.h"
 
-namespace libutils
+namespace utils
 {
 namespace type
 {

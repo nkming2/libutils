@@ -15,7 +15,7 @@
 #include "libutils/misc/misc_utils.h"
 #include "libutils/str/str_utils.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

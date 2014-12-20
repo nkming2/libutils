@@ -10,7 +10,7 @@
 
 #include "libutils/misc/singleton.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {
@@ -20,7 +20,7 @@ template<typename T> class Logger;
 }
 }
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

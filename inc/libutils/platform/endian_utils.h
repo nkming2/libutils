@@ -10,7 +10,7 @@
 
 #include <cstdint>
 
-namespace libutils
+namespace utils
 {
 namespace platform
 {

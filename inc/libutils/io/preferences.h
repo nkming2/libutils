@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

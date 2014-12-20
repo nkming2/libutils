@@ -12,7 +12,7 @@
 
 #include "libutils/math/math_utils.h"
 
-namespace libutils
+namespace utils
 {
 namespace math
 {

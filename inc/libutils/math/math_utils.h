@@ -8,7 +8,7 @@
 
 #pragma once
 
-namespace libutils
+namespace utils
 {
 namespace math
 {

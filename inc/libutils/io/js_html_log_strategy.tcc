@@ -13,7 +13,7 @@
 #include "libutils/io/js_html_log_strategy.h"
 #include "libutils/io/logger.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

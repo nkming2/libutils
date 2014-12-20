@@ -11,7 +11,7 @@
 #include <cstdarg>
 #include <string>
 
-namespace libutils
+namespace utils
 {
 namespace str
 {

@@ -18,10 +18,10 @@
 
 using namespace std;
 
-#define LU_NS_TAG "libutils::io::"
+#define LU_NS_TAG "utils::io::"
 #define LU_TAG LU_NS_TAG "Preferences::"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

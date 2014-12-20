@@ -10,7 +10,7 @@
 
 #include "libutils/platform/endian_utils.h"
 
-namespace libutils
+namespace utils
 {
 namespace platform
 {

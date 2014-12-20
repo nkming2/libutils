@@ -15,7 +15,7 @@
 #include "libutils/type/floating_point.h"
 #include "libutils/type/rgb_f.h"
 
-namespace libutils
+namespace utils
 {
 namespace type
 {

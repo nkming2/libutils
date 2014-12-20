@@ -13,7 +13,7 @@
 
 #include "libutils/type/misc.h"
 
-namespace libutils
+namespace utils
 {
 namespace str
 {

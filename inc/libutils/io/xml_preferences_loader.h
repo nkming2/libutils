@@ -13,7 +13,7 @@
 
 #include "libutils/io/preferences.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

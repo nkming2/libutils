@@ -15,10 +15,10 @@
 #include "libutils/io/stream_ops.h"
 #include "libutils/str/str_utils.h"
 
-#define LU_NS_TAG "libutils::str::"
+#define LU_NS_TAG "utils::str::"
 #define LU_TAG LU_NS_TAG "StrUtils::"
 
-namespace libutils
+namespace utils
 {
 namespace str
 {
@@ -33,7 +33,7 @@ void ConcatT_(std::basic_stringstream<T>*)
 template<typename T, typename U, typename... Args>
 void ConcatT_(std::basic_stringstream<T> *ss, const U &value, Args... args)
 {
-	using namespace libutils::io::stream_ops;
+	using namespace utils::io::stream_ops;
 	(*ss) << value;
 	ConcatT_(ss, args...);
 }

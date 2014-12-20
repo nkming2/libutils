@@ -16,7 +16,7 @@
 #include "libutils/io/log_strategy.h"
 #include "libutils/str/str_utils.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

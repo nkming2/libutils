@@ -16,7 +16,7 @@
 
 using namespace std;
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

@@ -12,7 +12,7 @@
 
 #include "libutils/io/ostream_log_strategy.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {

@@ -12,7 +12,7 @@
 
 #include "libutils/io/logger.h"
 
-namespace libutils
+namespace utils
 {
 namespace io
 {
