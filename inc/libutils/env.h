@@ -11,8 +11,8 @@
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 
 #if defined(UNIX) || defined(__unix__) || defined(LINUX) || defined(__linux__)
-	#if !defined(UNIX)
-		#define UNIX
+	#if !defined(POSIX)
+		#define POSIX
 	#endif
 #elif defined(_WIN32) || defined(WIN32)
 	#if !defined(WIN32)
