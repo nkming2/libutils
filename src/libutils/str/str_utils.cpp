@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <string>
 
+#include "libutils/env.h"
 #include "libutils/str/str_utils.h"
 
 using namespace std;
@@ -22,21 +23,10 @@ namespace str
 namespace
 {
 
-#ifdef WIN32
-wstring FormatWWin32(const wchar_t *format, va_list arg)
-{
-	va_list arg_copy;
-	va_copy(arg_copy, arg);
-	const int size = _vscwprintf(format, arg_copy);
-	va_end(arg_copy);
+#if POSIX
+#define FormatW_ FormatWPosix
 
-	wstring str(size + 1, L'\0');
-	vsnwprintf(&str[0], size + 1, format, arg);
-	return str;
-}
-
-#else
-wstring FormatWUnix(const wchar_t *format, va_list arg)
+wstring FormatWPosix(const wchar_t *format, va_list arg)
 {
 	static FILE *null_f = fopen("/dev/null", "wb");
 
@@ -49,6 +39,21 @@ wstring FormatWUnix(const wchar_t *format, va_list arg)
 	vswprintf(&str[0], size + 1, format, arg);
 	// We don't want the null char
 	str.pop_back();
+	return str;
+}
+
+#elif WIN32
+#define FormatW_ FormatWWin32
+
+wstring FormatWWin32(const wchar_t *format, va_list arg)
+{
+	va_list arg_copy;
+	va_copy(arg_copy, arg);
+	const int size = _vscwprintf(format, arg_copy);
+	va_end(arg_copy);
+
+	wstring str(size + 1, L'\0');
+	vsnwprintf(&str[0], size + 1, format, arg);
 	return str;
 }
 
@@ -81,11 +86,7 @@ basic_string<wchar_t> StrUtils::Format(const wchar_t *format, ...)
 {
 	va_list arg;
 	va_start(arg, format);
-#ifdef WIN32
-	wstring str = FormatWWin32(format, arg);
-#else
-	wstring str = FormatWUnix(format, arg);
-#endif
+	wstring str = FormatW_(format, arg);
 	va_end(arg);
 	return str;
 }
