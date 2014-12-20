@@ -12,11 +12,11 @@
 
 #if defined(UNIX) || defined(__unix__) || defined(LINUX) || defined(__linux__)
 	#if !defined(POSIX)
-		#define POSIX
+		#define POSIX 1
 	#endif
 #elif defined(_WIN32) || defined(WIN32)
 	#if !defined(WIN32)
-		#define WIN32
+		#define WIN32 1
 	#endif
 #else
 	#error Unsupported platform
