@@ -8,7 +8,15 @@
 
 #pragma once
 
-#include "libutils/bitmap/bitmap.h"
+namespace utils
+{
+namespace bitmap
+{
+
+class Bitmap;
+
+}
+}
 
 namespace utils
 {
