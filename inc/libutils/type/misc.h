@@ -12,3 +12,4 @@
 
 typedef uint8_t Byte;
 typedef unsigned int Uint;
+typedef unsigned long Ulong;
