@@ -96,6 +96,24 @@ public:
 		return temp;
 	}
 
+	friend typename std::iterator_traits<InputIterator_>::difference_type
+	operator-(const StepIterator &lhs, const InputIterator &rhs)
+	{
+		return std::distance(rhs, lhs.m_it) / lhs.m_step;
+	}
+
+	friend typename std::iterator_traits<InputIterator_>::difference_type
+	operator-(const InputIterator &lhs, const StepIterator &rhs)
+	{
+		return std::distance(rhs.m_it, lhs) / rhs.m_step;
+	}
+
+	friend typename std::iterator_traits<InputIterator_>::difference_type
+	operator-(const StepIterator &lhs, const StepIterator &rhs)
+	{
+		return lhs - rhs.m_it;
+	}
+
 	friend bool operator==(const StepIterator &lhs, const InputIterator &rhs)
 	{
 		return (lhs.m_it == rhs);
