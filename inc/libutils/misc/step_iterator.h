@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <cassert>
 #include <cstddef>
 #include <iterator>
 
@@ -109,6 +110,16 @@ public:
 		return std::distance(rhs.m_it, lhs) / rhs.m_step;
 	}
 
+	/**
+	 * Return the distance between two StepIterators. @a lhs shall be larger
+	 * than @a rhs
+	 * @note if @a lhs and @a rhs shared a different step value, the behavior is
+	 * undefined
+	 *
+	 * @param lhs
+	 * @param rhs
+	 * @return
+	 */
 	friend typename std::iterator_traits<InputIterator_>::difference_type
 	operator-(const StepIterator &lhs, const StepIterator &rhs)
 	{
