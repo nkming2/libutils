@@ -10,6 +10,7 @@
 
 #include <cassert>
 #include <cstddef>
+#include <algorithm>
 #include <iterator>
 
 namespace utils
@@ -123,7 +124,8 @@ public:
 	friend typename std::iterator_traits<InputIterator_>::difference_type
 	operator-(const StepIterator &lhs, const StepIterator &rhs)
 	{
-		return lhs - rhs.m_it;
+		return std::distance(rhs.m_it, lhs.m_it) / std::max(lhs.m_step,
+				rhs.m_step);
 	}
 
 	friend bool operator==(const StepIterator &lhs, const InputIterator &rhs)
