@@ -223,6 +223,11 @@ public:
 		return m_it;
 	}
 
+	ptrdiff_t GetStep() const
+	{
+		return m_step;
+	}
+
 private:
 	InputIterator m_it;
 	ptrdiff_t m_step;
