@@ -27,7 +27,7 @@ struct Size
 			: Size(val, val)
 	{}
 
-	Size(const uint8_t w, const uint8_t h)
+	Size(const uint32_t w, const uint32_t h)
 			: w(w), h(h)
 	{}
 
