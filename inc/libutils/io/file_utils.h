@@ -35,6 +35,9 @@ public:
 		return OpenIfstream(path, std::ios::in);
 	}
 */
+
+	static std::vector<Byte> ReadFile(const std::wstring &path,
+			const bool is_binary);
 };
 
 }
