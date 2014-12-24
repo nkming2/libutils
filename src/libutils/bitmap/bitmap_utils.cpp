@@ -37,5 +37,22 @@ bool BitmapUtils::IsOpaque(const Bitmap &bmp)
 	return true;
 }
 
+vector<Byte> BitmapUtils::GetBgrData(const Bitmap &bmp)
+{
+	const vector<Byte> &data = bmp.GetData();
+	vector<Byte> product(bmp.GetSize().GetArea() * 3);
+
+	vector<Byte>::iterator dst_it = product.begin();
+	vector<Byte>::const_iterator src_it = data.cbegin();
+	while (src_it != data.cend())
+	{
+		*dst_it++ = *src_it++;
+		*dst_it++ = *src_it++;
+		*dst_it++ = *src_it++;
+		++src_it;
+	}
+	return product;
+}
+
 }
 }

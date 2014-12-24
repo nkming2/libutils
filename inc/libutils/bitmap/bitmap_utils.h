@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <vector>
+
 namespace utils
 {
 namespace bitmap
@@ -29,6 +31,7 @@ public:
 	BitmapUtils() = delete;
 
 	static bool IsOpaque(const Bitmap &bmp);
+	static std::vector<Byte> GetBgrData(const Bitmap &bmp);
 };
 
 }
