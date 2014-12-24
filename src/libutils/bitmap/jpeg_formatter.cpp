@@ -13,7 +13,7 @@
 
 #include "libutils/log.h"
 #include "libutils/bitmap/bitmap.h"
-#include "libutils/bitmap/formatter/jpeg_formatter.h"
+#include "libutils/bitmap/jpeg_formatter.h"
 #include "libutils/str/str_utils.h"
 #include "libutils/type/misc.h"
 #include "libutils/type/size.h"

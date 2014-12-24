@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include "libutils/bitmap/formatter/formatter.h"
+#include "libutils/bitmap/formatter.h"
 #include "libutils/math/math_utils.h"
 #include "libutils/type/misc.h"
 

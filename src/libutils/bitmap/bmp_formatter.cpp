@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "libutils/bitmap/bitmap.h"
-#include "libutils/bitmap/formatter/bmp_formatter.h"
+#include "libutils/bitmap/bmp_formatter.h"
 #include "libutils/platform/endian_utils.h"
 #include "libutils/type/misc.h"
 
