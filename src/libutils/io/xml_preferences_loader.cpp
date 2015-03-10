@@ -165,7 +165,7 @@ bool Impl::LoadPrimitive(const tinyxml2::XMLElement *element,
 		const unique_ptr<Preferences::Editor> &edit)
 {
 	wstring key;
-	T value;
+	T value{};
 	bool is_has_value = false;
 
 	for (auto attr = element->FirstAttribute(); attr; attr = attr->Next())
