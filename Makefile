@@ -48,8 +48,8 @@ $(info User symbols = $(ALL_SYMBOLS))
 
 .DEFAULT_GOAL:=all
 
-CXXFLAGS=
 CPPFLAGS=
+CXXFLAGS=
 ARFLAGS=
 BIN_SUFFIX=
 
@@ -72,10 +72,12 @@ CPPFLAGS+=-DLU_USE_XML
 endif
 
 
-CXXFLAGS+=-std=gnu++1y
 CXXFLAGS+=-fmessage-length=0
 CXXFLAGS+=-fno-strict-aliasing
-CXXFLAGS+=-pedantic -Wall -Wextra
+CXXFLAGS+=-std=gnu++11
+CXXFLAGS+=-Wall -Wextra -pedantic
+
+ARFLAGS+=-r
 
 ifeq ($(LU_BUILD),DEBUG)
 BIN_SUFFIX:=$(BIN_SUFFIX)-d
@@ -102,8 +104,6 @@ ifeq ($(MAKECMDGOALS),dry)
 CXXFLAGS+=-fsyntax-only
 $(info Performing dry run (no binary))
 endif
-
-ARFLAGS+=-r
 
 # End setting flags
 
@@ -142,6 +142,7 @@ OBJ_FILES:=$(OBJ_FILES:%.o=%$(BIN_SUFFIX).o)
 DEPENDS:=$(OBJ_FILES:.o=.d)
 -include $(DEPENDS)
 
+# Create all the DIRs
 OUT_DIRS:=$(sort $(dir $(OBJ_FILES)))
 ifdef WIN32
 $(shell mkdir $(subst /,\,$(OUT_DIRS)) lib > nul)
