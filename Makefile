@@ -145,10 +145,10 @@ DEPENDS:=$(OBJ_FILES:.o=.d)
 # Create all the DIRs
 OUT_DIRS:=$(sort $(dir $(OBJ_FILES)))
 ifdef WIN32
-$(shell mkdir $(subst /,\,$(OUT_DIRS)) lib > nul)
+$(shell mkdir $(subst /,\,$(OUT_DIRS)) $(OUT_LIB_PATH) > nul)
 
 else ifdef UNIX
-$(shell mkdir -p $(OUT_DIRS) lib)
+$(shell mkdir -p $(OUT_DIRS) $(OUT_LIB_PATH))
 
 endif
 
