@@ -10,6 +10,16 @@
 
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 
+#if defined(__ANDROID__) || (defined(__APPLE__) && TARGET_OS_IPHONE)
+	#if !defined(LU_MOBILE)
+		#define LU_MOBILE 1
+	#endif
+#else
+	#if !defined(LU_DESKTOP)
+		#define LU_DESKTOP 1
+	#endif
+#endif
+
 #if defined(UNIX) || defined(__unix__) || defined(LINUX) || defined(__linux__)
 	#if !defined(POSIX)
 		#define POSIX 1
