@@ -33,12 +33,7 @@ basic_ostream<char>& operator<<(basic_ostream<char> &os, const wchar_t wch)
 
 basic_ostream<char>& operator<<(basic_ostream<char> &os, const wchar_t *wcs)
 {
-	while (*wcs)
-	{
-		os << *wcs;
-		++wcs;
-	}
-	return os;
+	return operator<<(os, wstring{wcs});
 }
 
 basic_ostream<char>& operator<<(basic_ostream<char> &os, const wstring &ws)
