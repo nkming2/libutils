@@ -4,9 +4,10 @@ OUT_LIB=utils
 OUT_LIB_PATH=lib
 OUT_OBJ_PATH=obj
 
-CC=gcc
-CXX=g++
-AR=ar
+TOOLCHAIN_PREFIX=
+CC=$(TOOLCHAIN_PREFIX)gcc
+CXX=$(TOOLCHAIN_PREFIX)g++
+AR=$(TOOLCHAIN_PREFIX)gcc-ar
 
 # Additional include dirs
 ALL_INC_PATHS=$(INC_PATH) $(SRC_PATH)
