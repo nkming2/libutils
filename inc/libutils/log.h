@@ -23,7 +23,11 @@
 	#include "libutils/io/system_log.h"
 	#include "libutils/io/logger.h"
 #else
-	#define LU_LOG
+	#undef LU_LOG
+	#ifndef LU_NO_LOG
+		#define LU_NO_LOG
+	#endif
+
 	#define LU_LOG_WTF(tag, msg)
 	#define LU_LOG_E(tag, msg)
 	#define LU_LOG_W(tag, msg)
