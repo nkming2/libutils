@@ -125,7 +125,7 @@ vector<Byte> BmpFormatter::Encode(const Bitmap &bmp) const
 	return product;
 }
 
-Bitmap BmpFormatter::Decode(const vector<Byte> &data) const
+Bitmap BmpFormatter::Decode(const vector<Byte>&) const
 {
 	// TODO BmpFormatter::Decode
 	return {};
