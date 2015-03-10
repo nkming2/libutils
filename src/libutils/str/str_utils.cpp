@@ -23,7 +23,7 @@ namespace str
 namespace
 {
 
-#if POSIX
+#if LU_POSIX
 #define FormatW_ FormatWPosix
 
 wstring FormatWPosix(const wchar_t *format, va_list arg)
@@ -42,7 +42,7 @@ wstring FormatWPosix(const wchar_t *format, va_list arg)
 	return str;
 }
 
-#elif WIN32
+#elif LU_WIN32
 #define FormatW_ FormatWWin32
 
 wstring FormatWWin32(const wchar_t *format, va_list arg)

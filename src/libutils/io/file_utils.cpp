@@ -30,9 +30,9 @@ namespace io
 
 FILE* FileUtils::OpenFile(const wstring &path, const wstring &mode)
 {
-#if WIN32
+#if LU_WIN32
 	return _wfopen(path.c_str(), mode.c_str());
-#elif POSIX
+#elif LU_POSIX
 	return fopen(str::EncodeUtils::U16ToU8(path).c_str(),
 			str::EncodeUtils::U16ToU8(mode).c_str());
 #endif
@@ -41,9 +41,9 @@ FILE* FileUtils::OpenFile(const wstring &path, const wstring &mode)
 /*
 ifstream FileUtils::OpenIfstream(const wstring &path, const ios::openmode mode)
 {
-#if WIN32
+#if LU_WIN32
 	return ifstream(path.c_str(), mode);
-#elif POSIX
+#elif LU_POSIX
 	return ifstream(str::EncodeUtils::U16ToU8(path).c_str(), mode);
 #endif
 }
