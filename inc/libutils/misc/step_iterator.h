@@ -37,12 +37,14 @@ public:
 			: m_it(it), m_step(step)
 	{}
 
-	auto operator*()
+	// FIXME C++14
+	decltype(((InputIterator*)nullptr)->operator*()) operator*()
 	{
 		return *m_it;
 	}
 
-	auto operator->()
+	// FIXME C++14
+	decltype(((InputIterator*)nullptr)->operator->()) operator->()
 	{
 		return m_it.operator->();
 	}
