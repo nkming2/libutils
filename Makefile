@@ -74,7 +74,7 @@ endif
 
 CXXFLAGS+=-fmessage-length=0
 CXXFLAGS+=-fno-strict-aliasing
-CXXFLAGS+=-std=gnu++11
+CXXFLAGS+=-std=gnu++1y
 CXXFLAGS+=-Wall -Wextra -pedantic
 
 ARFLAGS+=-r
