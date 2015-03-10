@@ -14,6 +14,14 @@ ALL_INC_PATHS=$(INC_PATH) $(SRC_PATH)
 # Additional symbols
 ALL_SYMBOLS=
 
+# Optional components
+# Require libpng
+USE_PNG?=1
+# Require libturbojpeg
+USE_JPEG?=1
+# Require tinyxml2
+USE_XML?=1
+
 # Basically you are not going to mess up with things below
 
 ifeq ($(OS),Windows_NT)
@@ -47,6 +55,21 @@ BIN_SUFFIX=
 CPPFLAGS+=$(addprefix -I,$(ALL_INC_PATHS))
 CPPFLAGS+=$(addprefix -D,$(ALL_SYMBOLS))
 CPPFLAGS+=-MMD
+
+
+# Optional components
+ifeq ($(USE_PNG),1)
+CPPFLAGS+=-DLU_USE_PNG
+endif
+
+ifeq ($(USE_JPEG),1)
+CPPFLAGS+=-DLU_USE_JPEG
+endif
+
+ifeq ($(USE_XML),1)
+CPPFLAGS+=-DLU_USE_XML
+endif
+
 
 CXXFLAGS+=-std=gnu++1y
 CXXFLAGS+=-fmessage-length=0
@@ -93,6 +116,24 @@ else ifdef UNIX
 SRC_FILES:=$(shell find $(SRC_PATH) -type f -name *.cpp)
 
 endif
+
+
+# Exclude unselected components
+not_contain=$(foreach v,$2,$(if $(findstring $1,$v),,$v))
+
+ifeq ($(USE_PNG),0)
+SRC_FILES:=$(call not_contain,/bitmap/png_formatter.cpp,$(SRC_FILES))
+endif
+
+ifeq ($(USE_JPEG),0)
+SRC_FILES:=$(call not_contain,/bitmap/jpeg_formatter.cpp,$(SRC_FILES))
+endif
+
+ifeq ($(USE_XML),0)
+SRC_FILES:=$(call not_contain,/io/xml_preferences_loader.cpp,$(SRC_FILES))
+SRC_FILES:=$(call not_contain,/io/xml_preferences_writer.cpp,$(SRC_FILES))
+endif
+
 
 OBJ_FILES:=$(SRC_FILES:$(SRC_PATH)/%.cpp=$(OUT_OBJ_PATH)/%.o)
 OBJ_FILES:=$(OBJ_FILES:%.o=%$(BIN_SUFFIX).o)
