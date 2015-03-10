@@ -18,10 +18,15 @@ namespace utils
 namespace io
 {
 
-namespace internal
+template<typename CharT_>
+void BasicLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
+		const LoggerFlag flag)
 {
+	this->GetStream() << GetInitial(flag) << str << '\n';
+}
 
-inline const char* BlsGetInitial(const LoggerFlag flag)
+template<typename CharT_>
+inline const char* BasicLogStrategy<CharT_>::GetInitial(const LoggerFlag flag)
 {
 	switch (flag)
 	{
@@ -48,14 +53,6 @@ inline const char* BlsGetInitial(const LoggerFlag flag)
 	}
 }
 
-}
-
-template<typename CharT_>
-void BasicLogStrategy<CharT_>::Log(const std::basic_string<CharT_> &str,
-		const LoggerFlag flag)
-{
-	this->GetStream() << internal::BlsGetInitial(flag) << str << '\n';
-}
 
 }
 }

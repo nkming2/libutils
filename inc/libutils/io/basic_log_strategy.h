@@ -34,6 +34,9 @@ public:
 	{}
 
 	void Log(const std::basic_string<CharT_> &str, const LoggerFlag flag) override;
+
+private:
+	inline const char* GetInitial(const LoggerFlag flag);
 };
 
 }
