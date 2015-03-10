@@ -67,7 +67,10 @@ HtmlLogStrategy<CharT_>::HtmlLogStrategy(std::basic_ostream<CharT_> *stream,
 template<typename CharT_>
 HtmlLogStrategy<CharT_>::~HtmlLogStrategy()
 {
-	this->GetStream() << "</body>\n</html>";
+	if (m_is_init)
+	{
+		this->GetStream() << "</body>\n</html>";
+	}
 }
 
 template<typename CharT_>
