@@ -57,6 +57,17 @@ public:
 	template<typename T>
 	static T HostToBe(const T host);
 	/**
+	 * Covert data from big endian to host endian
+	 *
+	 * @param be
+	 * @return
+	 */
+	template<typename T>
+	static T BeToHost(const T be)
+	{
+		return HostToBe(be);
+	}
+	/**
 	 * Covert data from host endian to little endian
 	 *
 	 * @param host
@@ -64,6 +75,17 @@ public:
 	 */
 	template<typename T>
 	static T HostToLe(const T host);
+	/**
+	 * Covert data from little endian to host endian
+	 *
+	 * @param le
+	 * @return
+	 */
+	template<typename T>
+	static T LeToHost(const T le)
+	{
+		return HostToLe(le);
+	}
 };
 
 }
