@@ -21,6 +21,8 @@ namespace type
 class RectUtils
 {
 public:
+	RectUtils() = delete;
+
 	/**
 	 * Return whether @a point is rested inside @a rect
 	 *
