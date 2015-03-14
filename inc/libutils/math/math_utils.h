@@ -37,7 +37,6 @@ public:
 	template<typename T>
 	static typename std::enable_if<std::is_arithmetic<T>::value, float>::type
 	GetAngleFromX(const T x, const T y);
-
 	/**
 	 * Return the angle between a vector @a vec and the x axis, [-180, 180]
 	 *
@@ -50,7 +49,6 @@ public:
 	{
 		return GetAngleFromX(vec.x, vec.y);
 	}
-
 	/**
 	 * Return the angle between a vector @a vec and the x axis, at the point
 	 * @a origin, [-180, 180]
@@ -65,6 +63,18 @@ public:
 	GetAngleFromX(const T &origin, const T &vec)
 	{
 		return GetAngleFromX(vec.x - origin.x, vec.y - origin.y);
+	}
+
+	/**
+	 * Convert a [-180, 180] half rotation to a [0, 360] full rotation
+	 *
+	 * @param angle
+	 * @return
+	 */
+	template<typename T>
+	T HalfToFullRotation(const T angle)
+	{
+		return ((angle >= 0) ? angle : (angle + 360));
 	}
 };
 
