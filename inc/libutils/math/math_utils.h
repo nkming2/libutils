@@ -20,6 +20,9 @@ public:
 
 	template<typename T>
 	static T Clamp(const T &min, const T &val, const T &max);
+
+	template<typename T>
+	static constexpr T Pi();
 };
 
 }
