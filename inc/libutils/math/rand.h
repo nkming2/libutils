@@ -10,6 +10,7 @@
 
 #include <limits>
 #include <random>
+#include <type_traits>
 
 #include "libutils/env.h"
 #include "libutils/misc/singleton.h"
