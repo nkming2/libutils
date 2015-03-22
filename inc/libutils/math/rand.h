@@ -117,6 +117,11 @@ public:
 		return Custom<T>(d);
 	}
 
+	std::mt19937* GetEngine()
+	{
+		return &m_engine;
+	}
+
 private:
 	std::mt19937 m_engine;
 };
