@@ -10,7 +10,7 @@
 
 #include <stack>
 
-#include "libutils/type/behavior_tree/composite_node.h"
+#include "libutils/type/behavior_tree/composition.h"
 
 namespace utils
 {
@@ -19,10 +19,10 @@ namespace type
 namespace behavior_tree
 {
 
-class Selector : public CompositeNode
+class Selector : public Composition
 {
 public:
-	typedef CompositeNode::Config Config;
+	typedef Composition::Config Config;
 
 	explicit Selector(Config &&config);
 

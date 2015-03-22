@@ -1,5 +1,5 @@
 /*
- * composite_node.h
+ * composition.h
  *
  * Author: Ming Tsang
  * Copyright (c) 2015 Ming Tsang
@@ -26,7 +26,7 @@ namespace behavior_tree
 /**
  * A base Node that is composed of multiple other Node
  */
-class CompositeNode : public Node
+class Composition : public Node
 {
 public:
 	struct Config
@@ -39,7 +39,7 @@ public:
 		bool is_random = false;
 	};
 
-	explicit CompositeNode(Config &&config);
+	explicit Composition(Config &&config);
 
 protected:
 	/**

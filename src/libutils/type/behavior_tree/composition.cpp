@@ -1,5 +1,5 @@
 /*
- * composite_node.cpp
+ * composition.cpp
  *
  * Author: Ming Tsang
  * Copyright (c) 2015 Ming Tsang
@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "libutils/math/rand.h"
-#include "libutils/type/behavior_tree/composite_node.h"
+#include "libutils/type/behavior_tree/composition.h"
 
 namespace utils
 {
@@ -23,7 +23,7 @@ namespace type
 namespace behavior_tree
 {
 
-CompositeNode::CompositeNode(Config &&config)
+Composition::Composition(Config &&config)
 		: m_nodes(std::move(config.nodes)),
 		  m_is_random(config.is_random),
 		  m_sequence(m_nodes.size()),
@@ -35,7 +35,7 @@ CompositeNode::CompositeNode(Config &&config)
 	}
 }
 
-Node* CompositeNode::next()
+Node* Composition::next()
 {
 	if (m_sequence_pos >= m_nodes.size())
 	{
@@ -47,7 +47,7 @@ Node* CompositeNode::next()
 	}
 }
 
-void CompositeNode::resetSequence()
+void Composition::resetSequence()
 {
 	m_sequence_pos = 0;
 	if (m_is_random)

@@ -22,7 +22,7 @@ namespace behavior_tree
 {
 
 Selector::Selector(Config &&config)
-		: CompositeNode(std::move(config))
+		: Composition(std::move(config))
 {}
 
 Selector::Result Selector::onTick(stack<Node*> *cache)

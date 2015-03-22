@@ -22,7 +22,7 @@ namespace behavior_tree
 {
 
 Sequence::Sequence(Config &&config)
-		: CompositeNode(std::move(config))
+		: Composition(std::move(config))
 {}
 
 Sequence::Result Sequence::onTick(stack<Node*> *cache)
