@@ -19,7 +19,7 @@
 
 namespace utils
 {
-namespace type
+namespace math
 {
 
 /**
