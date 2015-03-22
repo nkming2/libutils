@@ -8,7 +8,6 @@
 
 #include <cassert>
 
-#include <memory>
 #include <stack>
 
 #include "libutils/type/behavior_tree/repeater.h"
@@ -24,15 +23,10 @@ namespace behavior_tree
 {
 
 Repeater::Repeater(Config &&config)
-		: m_node(std::move(config.node)),
+		: Decorator(std::move(config)),
 		  m_repeat(config.repeat),
 		  m_iteration(0)
 {}
-
-Repeater::Result Repeater::onTick(stack<Node*> *cache)
-{
-	return onChildResult(m_node->tick(cache), cache);
-}
 
 Repeater::Result Repeater::onChildResult(const Result result, stack<Node*>*)
 {
