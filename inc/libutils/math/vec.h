@@ -126,6 +126,11 @@ public:
 		return sqrt(LengthSquare());
 	}
 
+	float LengthF() const
+	{
+		return sqrt(LengthSquare());
+	}
+
 	T Dot(const Vec &rhs) const
 	{
 		T result{};
