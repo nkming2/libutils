@@ -17,6 +17,8 @@
 #include <stdexcept>
 #include <type_traits>
 
+#include "libutils/type/floating_point.h"
+
 namespace utils
 {
 namespace math
@@ -90,9 +92,20 @@ public:
 		return temp *= scalar;
 	}
 
-	friend bool operator==(const Vec &lhs, const Vec &rhs)
+	template<typename U = T>
+	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type
+	operator==(const Vec &lhs, const Vec &rhs)
 	{
 		return std::equal(lhs.val, lhs.val + size, rhs.val);
+	}
+
+	template<typename U = T>
+	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type
+	operator==(const Vec &lhs, const Vec &rhs)
+	{
+		return std::equal(lhs.val, lhs.val + size, rhs.val,
+				static_cast<bool (*)(const T&, const T&)>(
+						&type::FloatingPoint<T>::AlmostEquals));
 	}
 
 	friend bool operator!=(const Vec &lhs, const Vec &rhs)
