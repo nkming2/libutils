@@ -10,24 +10,31 @@
 
 #include <cstdint>
 
+#include <type_traits>
+
+#include "libutils/type/floating_point.h"
+
 namespace utils
 {
 namespace type
 {
 
-struct Size
+template<typename T>
+struct SizeT
 {
-	Size()
-			: Size(0)
+	static_assert(std::is_arithmetic<T>::value, "SizeT expects arithmetic type");
+
+	SizeT()
+			: SizeT(0)
 	{}
 
-	Size(const Size &rhs) = default;
+	SizeT(const SizeT &rhs) = default;
 
-	explicit Size(const uint32_t val)
-			: Size(val, val)
+	explicit SizeT(const T val)
+			: SizeT(val, val)
 	{}
 
-	Size(const uint32_t w, const uint32_t h)
+	SizeT(const T w, const T h)
 			: w(w), h(h)
 	{}
 
@@ -36,102 +43,115 @@ struct Size
 		return (w != 0 && h != 0);
 	}
 
-	Size& operator=(const Size &rhs)
+	SizeT& operator=(const SizeT &rhs)
 	{
 		w = rhs.w;
 		h = rhs.h;
 		return *this;
 	}
 
-	friend Size& operator+=(Size &lhs, const Size &rhs)
+	friend SizeT& operator+=(SizeT &lhs, const SizeT &rhs)
 	{
 		lhs.w += rhs.w;
 		lhs.h += rhs.h;
 		return lhs;
 	}
 
-	friend Size operator+(const Size &lhs, const Size &rhs)
+	friend SizeT operator+(const SizeT &lhs, const SizeT &rhs)
 	{
-		Size temp(lhs);
+		SizeT temp(lhs);
 		return temp += rhs;
 	}
 
-	friend Size& operator-=(Size &lhs, const Size &rhs)
+	friend SizeT& operator-=(SizeT &lhs, const SizeT &rhs)
 	{
 		lhs.w -= rhs.w;
 		lhs.h -= rhs.h;
 		return lhs;
 	}
 
-	friend Size operator-(const Size &lhs, const Size &rhs)
+	friend SizeT operator-(const SizeT &lhs, const SizeT &rhs)
 	{
-		Size temp(lhs);
+		SizeT temp(lhs);
 		return temp -= rhs;
 	}
 
-	friend Size& operator*=(Size &lhs, const float rhs)
+	friend SizeT& operator*=(SizeT &lhs, const float rhs)
 	{
 		lhs.w *= rhs;
 		lhs.h *= rhs;
 		return lhs;
 	}
 
-	friend Size operator*(const Size &lhs, const float rhs)
+	friend SizeT operator*(const SizeT &lhs, const float rhs)
 	{
-		Size temp(lhs);
+		SizeT temp(lhs);
 		return temp *= rhs;
 	}
 
-	friend Size& operator/=(Size &lhs, const float rhs)
+	friend SizeT& operator/=(SizeT &lhs, const float rhs)
 	{
 		lhs.w /= rhs;
 		lhs.h /= rhs;
 		return lhs;
 	}
 
-	friend Size operator/(const Size &lhs, const float rhs)
+	friend SizeT operator/(const SizeT &lhs, const float rhs)
 	{
-		Size temp(lhs);
+		SizeT temp(lhs);
 		return temp /= rhs;
 	}
 
-	friend bool operator==(const Size &lhs, const Size &rhs)
+	template<typename U = T>
+	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type
+	operator==(const SizeT &lhs, const SizeT &rhs)
 	{
 		return (lhs.w == rhs.w && lhs.h == rhs.h);
 	}
 
-	friend bool operator!=(const Size &lhs, const Size &rhs)
+	template<typename U = T>
+	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type
+	operator==(const SizeT &lhs, const SizeT &rhs)
+	{
+		return (FloatingPoint<T>::AlmostEquals(lhs.w, rhs.w)
+				&& FloatingPoint<T>::AlmostEquals(lhs.h, rhs.h));
+	}
+
+	friend bool operator!=(const SizeT &lhs, const SizeT &rhs)
 	{
 		return !(lhs == rhs);
 	}
 
-	friend bool operator>(const Size &lhs, const Size &rhs)
+	friend bool operator>(const SizeT &lhs, const SizeT &rhs)
 	{
 		return (lhs.GetArea() > rhs.GetArea());
 	}
 
-	friend bool operator>=(const Size &lhs, const Size &rhs)
+	friend bool operator>=(const SizeT &lhs, const SizeT &rhs)
 	{
 		return (lhs.GetArea() >= rhs.GetArea());
 	}
 
-	friend bool operator<(const Size &lhs, const Size &rhs)
+	friend bool operator<(const SizeT &lhs, const SizeT &rhs)
 	{
 		return !(lhs >= rhs);
 	}
 
-	friend bool operator<=(const Size &lhs, const Size &rhs)
+	friend bool operator<=(const SizeT &lhs, const SizeT &rhs)
 	{
 		return !(lhs > rhs);
 	}
 
-	uint32_t GetArea() const
+	T GetArea() const
 	{
 		return w * h;
 	}
 
-	uint32_t w, h;
+	T w, h;
 };
+
+typedef SizeT<uint32_t> Size;
+typedef SizeT<float> SizeF;
 
 }
 }
