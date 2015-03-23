@@ -161,6 +161,24 @@ public:
 		throw std::domain_error("Valid only with 3D vector");
 	}
 
+	/**
+	 * Return the unit vector. The result is likely to be wrong on integer
+	 * variation due to rounding errors
+	 *
+	 * @return
+	 */
+	Vec Unit() const
+	{
+		const float l = LengthF();
+		Vec temp(*this);
+		std::transform(temp.val, temp.val + size, temp.val,
+				[l](const T val) -> T
+				{
+					return val / l;
+				});
+		return temp;
+	}
+
 private:
 	T val[size];
 };
