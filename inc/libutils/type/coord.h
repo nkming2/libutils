@@ -11,112 +11,129 @@
 #include <cmath>
 #include <cstdint>
 
+#include <type_traits>
+
+#include "libutils/type/floating_point.h"
+
 namespace utils
 {
 namespace type
 {
 
-struct Coord
+template<typename T>
+struct CoordT
 {
-	Coord()
-			: Coord(0)
+	static_assert(std::is_arithmetic<T>::value, "CoordT expects arithmetic type");
+
+	CoordT()
+			: CoordT(0)
 	{}
 
-	Coord(const Coord &rhs) = default;
+	CoordT(const CoordT &rhs) = default;
 
-	explicit Coord(const int32_t val)
-			: Coord(val, val)
+	explicit CoordT(const T val)
+			: CoordT(val, val)
 	{}
 
-	Coord(const int32_t x, const int32_t y)
+	CoordT(const T x, const T y)
 			: x(x), y(y)
 	{}
 
-	Coord& operator=(const Coord &rhs)
+	CoordT& operator=(const CoordT &rhs)
 	{
 		x = rhs.x;
 		y = rhs.y;
 		return *this;
 	}
 
-	friend Coord& operator+=(Coord &lhs, const Coord &rhs)
+	friend CoordT& operator+=(CoordT &lhs, const CoordT &rhs)
 	{
 		lhs.x += rhs.x;
 		lhs.y += rhs.y;
 		return lhs;
 	}
 
-	friend Coord operator+(const Coord &lhs, const Coord &rhs)
+	friend CoordT operator+(const CoordT &lhs, const CoordT &rhs)
 	{
-		Coord temp(lhs);
+		CoordT temp(lhs);
 		return temp += rhs;
 	}
 
-	friend Coord& operator-=(Coord &lhs, const Coord &rhs)
+	friend CoordT& operator-=(CoordT &lhs, const CoordT &rhs)
 	{
 		lhs.x -= rhs.x;
 		lhs.y -= rhs.y;
 		return lhs;
 	}
 
-	friend Coord operator-(const Coord &lhs, const Coord &rhs)
+	friend CoordT operator-(const CoordT &lhs, const CoordT &rhs)
 	{
-		Coord temp(lhs);
+		CoordT temp(lhs);
 		return temp -= rhs;
 	}
 
-	friend Coord& operator*=(Coord &lhs, const float rhs)
+	friend CoordT& operator*=(CoordT &lhs, const float rhs)
 	{
 		lhs.x *= rhs;
 		lhs.y *= rhs;
 		return lhs;
 	}
 
-	friend Coord operator*(const Coord &lhs, const float rhs)
+	friend CoordT operator*(const CoordT &lhs, const float rhs)
 	{
-		Coord temp(lhs);
+		CoordT temp(lhs);
 		return temp *= rhs;
 	}
 
-	friend Coord& operator/=(Coord &lhs, const float rhs)
+	friend CoordT& operator/=(CoordT &lhs, const float rhs)
 	{
 		lhs.x /= rhs;
 		lhs.y /= rhs;
 		return lhs;
 	}
 
-	friend Coord operator/(const Coord &lhs, const float rhs)
+	friend CoordT operator/(const CoordT &lhs, const float rhs)
 	{
-		Coord temp(lhs);
+		CoordT temp(lhs);
 		return temp /= rhs;
 	}
 
-	friend bool operator==(const Coord &lhs, const Coord &rhs)
+	template<typename U = T>
+	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type
+	operator==(const CoordT &lhs, const CoordT &rhs)
 	{
 		return (lhs.x == rhs.x && lhs.y == rhs.y);
 	}
 
-	friend bool operator!=(const Coord &lhs, const Coord &rhs)
+	template<typename U = T>
+	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type
+	operator==(const CoordT &lhs, const CoordT &rhs)
+	{
+		return (FloatingPoint<T>::AlmostEquals(lhs.x, rhs.x)
+				&& FloatingPoint<T>::AlmostEquals(lhs.y, rhs.y));
+	}
+
+	friend bool operator!=(const CoordT &lhs, const CoordT &rhs)
 	{
 		return !(lhs == rhs);
 	}
 
-	friend bool operator>(const Coord &lhs, const Coord &rhs)
+	friend bool operator>(const CoordT &lhs, const CoordT &rhs)
 	{
 		return (lhs.GetLength() > rhs.GetLength());
 	}
 
-	friend bool operator>=(const Coord &lhs, const Coord &rhs)
+	friend bool operator>=(const CoordT &lhs, const CoordT &rhs)
 	{
 		return (lhs.GetLength() >= rhs.GetLength());
 	}
 
-	friend bool operator<(const Coord &lhs, const Coord &rhs)
+	friend bool operator<(const CoordT &lhs, const CoordT &rhs)
 	{
 		return !(lhs >= rhs);
 	}
 
-	friend bool operator<=(const Coord &lhs, const Coord &rhs)
+	friend bool operator<=(const CoordT &lhs, const CoordT &rhs)
 	{
 		return !(lhs > rhs);
 	}
@@ -126,8 +143,11 @@ struct Coord
 		return sqrt(x * x + y * y);
 	}
 
-	int32_t x, y;
+	T x, y;
 };
+
+typedef CoordT<int32_t> Coord;
+typedef CoordT<float> CoordF;
 
 }
 }
