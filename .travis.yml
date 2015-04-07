@@ -1,0 +1,31 @@
+language: cpp
+cache: apt
+
+env:
+  - LU_BUILD=DEBUG
+  - LU_BUILD=RELEASE
+
+before_install:
+# GCC 4.9
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+# turbojpeg
+  - sudo add-apt-repository ppa:yjwong/libjpeg-turbo -y
+  - sudo apt-get update
+  - sudo apt-get install g++-4.9 libpng12-dev libjpeg-turbo8-dev libgtest-dev
+# Compile gtest
+  - cd /usr/src/gtest
+  - sudo cmake .
+  - sudo cmake --build .
+  - sudo mv libg* /usr/local/lib/
+  - cd -
+# tinyxml2
+  - wget https://github.com/leethomason/tinyxml2/archive/2.2.0.tar.gz -O /tmp/tinyxml2.tar.gz
+  - tar -xvf /tmp/tinyxml2.tar.gz
+  - cd tinyxml2-2.2.0
+  - g++-4.9 -O3 -g0 -c -o tinyxml2.o tinyxml2.cpp
+  - gcc-ar-4.9 -r libtinyxml2.a tinyxml2.o
+  - sudo cp tinyxml2.h /usr/include/tinyxml2.h
+  - sudo cp libtinyxml2.a /usr/lib/libtinyxml2.a
+  - cd ../
+
+script: make CXX="g++-4.9" AR="gcc-ar-4.9" test && cd test && script/run-test.sh

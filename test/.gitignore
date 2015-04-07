@@ -1,7 +1,8 @@
-# Ignore all sub-dirs but src/ and data/
+# Ignore all sub-dirs but src/, data/ and script/
 */*
 !src/*
 !data/*
+!script/*
 
 # Ignore additional files in root dir
 # Eclipse
