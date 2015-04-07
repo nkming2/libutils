@@ -5,7 +5,6 @@ OUT_LIB_PATH=lib
 OUT_OBJ_PATH=obj
 
 TOOLCHAIN_PREFIX=
-CC=$(TOOLCHAIN_PREFIX)gcc
 CXX=$(TOOLCHAIN_PREFIX)g++
 AR=$(TOOLCHAIN_PREFIX)gcc-ar
 
@@ -45,7 +44,7 @@ ifdef WIN32
 # TODO Also print CC version on win32
 
 else ifdef UNIX
-$(info CC = $(shell $(CC) --version | (read -r line; echo $$line)))
+$(info CXX = $(shell $(CXX) --version | (read -r line; echo $$line)))
 
 endif
 

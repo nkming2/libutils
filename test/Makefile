@@ -43,7 +43,7 @@ ifdef WIN32
 # TODO Also print CC version on win32
 
 else ifdef UNIX
-$(info CC = $(shell $(CC) --version | (read -r line; echo $$line)))
+$(info CXX = $(shell $(CXX) --version | (read -r line; echo $$line)))
 
 endif
 
@@ -72,7 +72,7 @@ CXXFLAGS+=-Wall -Wextra -pedantic
 
 LDFLAGS+=-Wl,--gc-sections
 LDFLAGS+=$(addprefix -L,$(USER_LIB_PATHS)) -L$(LIBUTILS_LIB_PATH)
-LDLIBS+=$(addprefix -l,$(USER_LIBS)) -l$(LIBUTILS_LIB)$(BIN_SUFFIX)
+LDLIBS+=-l$(LIBUTILS_LIB)$(BIN_SUFFIX) $(addprefix -l,$(USER_LIBS))
 
 
 ifeq ($(LU_BUILD),DEBUG)
