@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta charset='utf-8' />
+<head>
+
+<style>
+#log-content{font-family:monospace;}
+p.log{white-space:pre; margin:0; padding-left:8px; padding-right:8px;}
+.fatal{color:red; font-weight:bold;}
+.error{color:red;}
+.warning{color:#FFA500;}
+.info{color:green;}
+.debug{color:blue;}
+.vebose{color:black;}
+</style>
+
+<style>
+p.log:hover{background-color:#D3E8FF;}
+fieldset{border:0;}
+</style>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+<script>
+$(function()
+{
+	var array = ['fatal', 'error', 'warning', 'info', 'debug', 'verbose'];
+	for (var i = 0; i < array.length; ++i)
+	{
+		var $switch = $('input#switch-' + array[i], 'div#filter-options');
+		$switch.data('priority', array[i]);
+		$switch.on('change', function()
+				{
+					var $select = $('p.' + $(this).data('priority'),
+							'#log-content').css('display', 'block');
+					if (this.checked)
+					{
+						$select.css('display', 'block');
+					}
+					else
+					{
+						$select.css('display', 'none');
+					}
+					return;
+				});
+	}
+	return;
+});
+</script>
+
+</head>
+<body>
+
+<h2>Filter options</h2>
+<div id='filter-options'>
+Priority:
+<fieldset>
+<label for='switch-fatal'>Fatal</label>
+<input type='checkbox' id='switch-fatal' checked='true' />
+<label for='switch-error'>Error</label>
+<input type='checkbox' id='switch-error' checked='true' />
+<label for='switch-warning'>Warning</label>
+<input type='checkbox' id='switch-warning' checked='true' />
+<label for='switch-info'>Info</label>
+<input type='checkbox' id='switch-info' checked='true' />
+<label for='switch-debug'>Debug</label>
+<input type='checkbox' id='switch-debug' checked='true' />
+<label for='switch-verbose'>Verbose</label>
+<input type='checkbox' id='switch-verbose' checked='true' />
+</fieldset>
+</div>
+<h2>Logs</h2>
+<div id='log-content'>
+
+<p class='log error'>[LibUtilsTest] Testing JsHtmlLogStrategy</p>
+<p class='log warning'>[LibUtilsTest] Testing JsHtmlLogStrategy</p>
+<p class='log info'>[LibUtilsTest] Testing JsHtmlLogStrategy</p>
+<p class='log debug'>[LibUtilsTest] Testing JsHtmlLogStrategy</p>
+<p class='log verbose'>[LibUtilsTest] Testing JsHtmlLogStrategy</p>
+</body>
+</html>

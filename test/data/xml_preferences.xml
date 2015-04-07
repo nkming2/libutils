@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+	<boolean name="bool_t" value="true" />
+	<boolean name="bool_f" value="false" />
+	<long name="long_a" value="218462387483240" />
+	<int name="int_a" value="382101" />
+	<float name="float_a" value="53.3432" />
+	<float name="float_pi" value="3.14" />
+	<string name="string_a">Hahaha</string>
+	<foo name="string_duplicate_name">123</foo>
+	<string name="string_duplicate_name">hello world</string>
+	<foo name="string_duplicate_name">123</foo>
+	<set name="set_a">
+		<string>Unicode</string>
+		<foo>foo</foo>
+		<string>萬國碼</string>
+		<string>ユニコード文字</string>
+	</set>
+	<set name="set_empty">
+	</set>
+	<set name="malicious_set" />
+</map>
